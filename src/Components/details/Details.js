@@ -5,9 +5,10 @@ import UserPass from './meme.js';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-export default function Details() {
+export default function Details(props) {
     const params = useParams();
     const [meme, setMeme] = useState([]);
+    const [image, setImage] = useState(props.location.state.meme.url);
     const boxes = [];
     var bodyformData=new FormData();
     bodyformData.append('template_id',params.id);
@@ -28,13 +29,14 @@ export default function Details() {
             .then((response) => {
                 //handle success
                 console.log(response.data.data);
-                setMeme(response.data.data)
-                
+                setMeme(response.data.data);   
+                setImage(response.data.data.url)               
             })
             .catch(function (response) {
                 //handle error
                 console.log(response);
-            });          
+            }); 
+                   
    }
 
    const handleSubmit=(e)=>{
@@ -66,6 +68,9 @@ export default function Details() {
         background: 'linear-gradient(to right, #0a297d, #2b59d6)' /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       }
     
+    const title = props.location.state.meme.name
+
+    
   return (
       <main style={{width: "100%"}}>
           {/*Header*/}
@@ -74,8 +79,11 @@ export default function Details() {
             src="http://www.pngall.com/wp-content/uploads/2016/05/Trollface.png" />
             <h1 style={{color: 'whitesmoke',fontSize: '90%',marginLeft: '60px'}}>MEME GENERATOR</h1>               
         </header>
-        <div>
-            <img style={{display:"block", marginLeft: "auto", marginRight: "auto", width: "50%", padding:"2rem"}} src={meme.url} alt="meme" />
+        <div style={{display:'flex', alignItems:'center', flexDirection:'column',padding:'1rem'}}>
+        <Typography component="h3" variant="h5">
+          {title}
+        </Typography>
+            <img style={{display:"block", marginLeft: "auto", marginRight: "auto", width: "80%",maxWidth:'400px', padding:"2rem"}} src={image} alt="meme" />
         </div>
         <UserPass count={params.box_count} click={handleSubmit} user={user} pass={pass} text={inputText}/>
         <Box mt={8}>
