@@ -15,6 +15,13 @@ const useStyleCard = makeStyles((theme) => ({
       alignItems: 'center',
       width:'80%'
     },
+    cardDisplay: {
+      minMarginLeft: '1rem',
+      minMarginRight: '2rem',
+      display: 'flex',
+      alignItems: 'center',
+      width:'80%'
+    },
     card: {
       height: 500,
       display: 'flex',
@@ -22,6 +29,7 @@ const useStyleCard = makeStyles((theme) => ({
       justifyContent: 'center',
       padding: '1rem',
       width: 380,
+      maxWidth: '75vw',
     },
     cardMedia: {
       paddingTop: '56.25%', // 16:9
@@ -42,7 +50,7 @@ export default function Cards(props)
         {/* End hero unit */}
         <Grid container spacing={1}>
         {props.info.slice((props.page - 1)*props.offset,(props.page - 1)*props.offset + props.perPage).map(meme => (
-            <Grid item key={meme.id} xs={12} sm={6} md={6} lg={6} >
+            <Grid item key={meme.id} xs={12} sm={6} md={6} lg={6} className={classes.cardDisplay} >
               <Card className={classes.card}>
                 <CardMedia
                   className={classes.cardMedia}

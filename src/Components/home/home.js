@@ -51,8 +51,8 @@ useEffect(() => {
     <React.Fragment>
     <CssBaseline />
     
-    <main>  
-      <Grid >
+    <main style={{width: "100%"}}>  
+      
       <Header />
         <Intro />
         <div style={{display:"flex", alignItems:"center",justifyContent:"center", width:"100%"}}>
@@ -65,7 +65,6 @@ useEffect(() => {
                 />
         </div>
         <div><Cards info={{data}.data} page={currentPage} perPage={perPage} offset={offset}/></div> 
-      </Grid>
     </main>
       <Footer />
       <Copyright />

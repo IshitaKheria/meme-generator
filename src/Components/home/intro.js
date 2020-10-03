@@ -20,12 +20,11 @@ export default function Intro(){
 
     const classes = useStyleIntro();
     return(
-        <div className={classes.heroContent}>
-          <Grid >
+        <Grid item xs={12} sm={12} className={classes.heroContent}>
         <Container maxWidth="sm">
-          <img style={{height: "10rem", marginLeft: "30%"}} 
+          <img style={{height: "8rem", marginLeft: "30%", maxWidth:"50%" }} 
           src="http://www.pngall.com/wp-content/uploads/2016/05/Trollface.png" />
-          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
             Meme Generator
           </Typography>
           <Typography variant="h5" align="center" color="textSecondary" paragraph>
@@ -35,6 +34,6 @@ export default function Intro(){
           </Typography>
         </Container>
         </Grid>
-      </div>
+      
     )
 }
