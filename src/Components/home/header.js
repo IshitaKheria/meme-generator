@@ -15,7 +15,7 @@ export default function Header(){
       <header style={headerStyle}>
         <img style={{height: "3rem", marginLeft: "3%", paddingRight:"1rem"}} 
           src="http://www.pngall.com/wp-content/uploads/2016/05/Trollface.png" />
-          <h1 style={{color: 'whitesmoke',fontSize: '90%',marginLeft: '60px'}}>MEME GENERATOR</h1>               
+          <h1 style={{color: 'whitesmoke',fontSize: '1rem',marginLeft: '10%'}}>MEME GENERATOR</h1>               
       </header>
     )
 }

@@ -32,19 +32,24 @@ const useStyleCard = makeStyles((theme) => ({
       padding: '1rem',
       width: 380,
       maxWidth: '75vw',
+      flexWrap: 'wrap',
     },
     cardMedia: {
       paddingTop: '56.25%', // 16:9
-      height: 400,      
+      height: 350,      
     },
     cardContent: {
       flexGrow: 1,
       padding: 25,
+    },
+    link: {
+      textDecoration: 'none',
+       color: 'black',
     }
   }));
   
   const Loading = () => (
-    <div style={{height:"50%", display: "flex", alignItems: "center", justifyContent: "center"}}>
+    <div style={{height:"50%", display: "flex", alignItems: "center", justifyContent: "center", padding:'2rem'}}>
         <CircularProgress color="secondary" />
     </div>
 )
@@ -60,13 +65,19 @@ export default function Cards(props)
         {props.info.slice((props.page - 1)*props.offset,(props.page - 1)*props.offset + props.perPage).map(meme => (
             <Grid item key={meme.id} xs={12} sm={6} md={6} lg={6} className={classes.cardDisplay} >
               <Card className={classes.card}>
+                <Link  to={
+                            {pathname: "/" + meme.id + "/" + meme.box_count + "/" + meme.url,
+                                state: {
+                                          meme: meme
+                                        }
+                            }} className={classes.link}>
                 <LazyLoad key={meme.id} placeholder={<Loading />}>
                 <CardMedia
                   className={classes.cardMedia}
                   image={meme.url}
                   title={meme.name}
                   height="400"
-                />
+                /></LazyLoad>
                 {<CardContent className={classes.cardContent}>
                   <Typography gutterBottom variant="h5" component="h2">
                   {meme.name}
@@ -74,19 +85,7 @@ export default function Cards(props)
                   Box Count:- {meme.box_count}
                   </Typography>
                 </CardContent>}
-                </LazyLoad>
-                <CardActions>
-                <Link  to={
-                            {pathname: "/" + meme.id + "/" + meme.box_count + "/" + meme.url,
-                                state: {
-                                          meme: meme
-                                        }
-                            }}>
-                  <Button size="small" color="primary">
-                    Edit
-                  </Button>
-                  </Link>
-                </CardActions>
+                </Link>
               </Card>
             </Grid>
           ))}        
