@@ -1,7 +1,9 @@
 import React from 'react';
 import {Button, Card, CardActions, CardContent, CardMedia, Grid, Typography, Container} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { CircularProgress } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import LazyLoad from 'react-lazyload';
 
 
 const useStyleCard = makeStyles((theme) => ({
@@ -41,6 +43,12 @@ const useStyleCard = makeStyles((theme) => ({
     }
   }));
   
+  const Loading = () => (
+    <div style={{height:"50%", display: "flex", alignItems: "center", justifyContent: "center"}}>
+        <CircularProgress color="secondary" />
+    </div>
+)
+
 export default function Cards(props)
 
     {const classes = useStyleCard();
@@ -52,6 +60,7 @@ export default function Cards(props)
         {props.info.slice((props.page - 1)*props.offset,(props.page - 1)*props.offset + props.perPage).map(meme => (
             <Grid item key={meme.id} xs={12} sm={6} md={6} lg={6} className={classes.cardDisplay} >
               <Card className={classes.card}>
+                <LazyLoad key={meme.id} placeholder={<Loading />}>
                 <CardMedia
                   className={classes.cardMedia}
                   image={meme.url}
@@ -65,6 +74,7 @@ export default function Cards(props)
                   Box Count:- {meme.box_count}
                   </Typography>
                 </CardContent>}
+                </LazyLoad>
                 <CardActions>
                 <Link  to={
                             {pathname: "/" + meme.id + "/" + meme.box_count + "/" + meme.url,

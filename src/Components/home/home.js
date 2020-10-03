@@ -65,6 +65,15 @@ useEffect(() => {
                 />
         </div>
         <div><Cards info={{data}.data} page={currentPage} perPage={perPage} offset={offset}/></div> 
+        <div style={{display:"flex", alignItems:"center",justifyContent:"center", width:"100%"}}>
+            <Pagination 
+                count={count} 
+                page={currentPage} 
+                variant="outlined" 
+                shape="rounded" 
+                onChange={(event,val)=> setPage(val)}
+                />
+        </div>
     </main>
       <Footer />
       <Copyright />
