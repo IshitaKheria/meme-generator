@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyleUser = makeStyles((theme) => ({
     paper: {
-      marginTop: theme.spacing(6),
+      marginTop: theme.spacing(3),
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -33,9 +33,20 @@ export default function UserPass(props) {
   
     const classes = useStyleUser();
 
-    const text = [];
+    const text = [<TextField
+      variant="outlined"
+      margin="normal"
+      fullWidth
+      id='text1'
+      label="text"
+      name="text"
+      required
+      autoComplete="text"
+      onInput={props.text}
+      autoFocus        
+    />];
 
-  for (let i = 1; i <=props.count; i++) {
+  for (let i = 2; i <=props.count; i++) {
     text.push(<TextField
         variant="outlined"
         margin="normal"

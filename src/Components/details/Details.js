@@ -9,6 +9,8 @@ export default function Details(props) {
     const params = useParams();
     const [meme, setMeme] = useState([]);
     const [image, setImage] = useState(props.location.state.meme.url);
+    const [message, setMessage] = useState('')
+    const [open,setOpen] = useState(true)
     const boxes = [];
     var bodyformData=new FormData();
     bodyformData.append('template_id',params.id);
@@ -27,10 +29,16 @@ export default function Details(props) {
             headers: {'Content-Type': 'multipart/form-data' }
             })
             .then((response) => {
-                //handle success
-                console.log(response.data.data);
-                setMeme(response.data.data);   
-                setImage(response.data.data.url)               
+                if(response.data.success === true){
+                    console.log(response.data.data);
+                    setMeme(response.data.data);   
+                    setImage(response.data.data.url);
+                    setMessage('Meme Generated Successfully!!')     
+                }
+                else{
+                    setMessage(response.data.error_message) 
+                }
+                          
             })
             .catch(function (response) {
                 //handle error
@@ -39,6 +47,8 @@ export default function Details(props) {
                    
    }
 
+
+ 
    const handleSubmit=(e)=>{
     e.preventDefault();
     memeRequest();
@@ -91,6 +101,9 @@ export default function Details(props) {
         </Typography>
         </div>
         <UserPass count={params.box_count} click={handleSubmit} user={user} pass={pass} text={inputText}/>
+        <Typography variant="body2" color= 'secondary' align="center" >
+          {message}
+        </Typography>
         <Box mt={8}>
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
