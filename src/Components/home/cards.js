@@ -15,7 +15,8 @@ const useStyleCard = makeStyles((theme) => ({
       minMarginRight: '2rem',
       display: 'flex',
       alignItems: 'center',
-      width:'80%'
+      width:'80%',
+      backgroundColor:'transparent',
     },
     cardDisplay: {
       minMarginLeft: '1rem',

@@ -45,16 +45,26 @@ useEffect(() => {
   //to check the type of the data
   //console.log({data}.data)
 
+  const styles = {
+    paperContainer: {
+        backgroundImage: `url(${"background.JPG"})`,
+        backgroundAttachment: 'fixed',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover'
+    }
+};
+
   const count = Math.ceil({data}.data.length / {perPage}.perPage)
   
   return (
     <React.Fragment>
     <CssBaseline />
     
-    <main style={{width: "100%"}}>  
-      
+    <main style={{width: "100%"}}>    
       <Header />
         <Intro />
+        <div style={styles.paperContainer}>
         <div style={{display:"flex", alignItems:"center",justifyContent:"center", width:"100%"}}>
             <Pagination 
                 count={count} 
@@ -73,6 +83,7 @@ useEffect(() => {
                 shape="rounded" 
                 onChange={(event,val)=> setPage(val)}
                 />
+        </div>
         </div>
     </main>
       <Footer />

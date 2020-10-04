@@ -83,7 +83,12 @@ export default function Details(props) {
         <Typography component="h3" variant="h5">
           {title}
         </Typography>
-            <img style={{display:"block", marginLeft: "auto", marginRight: "auto", width: "80%",maxWidth:'400px', padding:"2rem"}} src={image} alt="meme" />
+        <a href={image} download>
+         <img style={{display:"block", marginLeft: "auto", marginRight: "auto", width: "80%",maxWidth:'400px', padding:"2rem"}} src={image} alt="meme" />
+        </a>   
+        <Typography variant="caption">
+          Click on the image to download it!
+        </Typography>
         </div>
         <UserPass count={params.box_count} click={handleSubmit} user={user} pass={pass} text={inputText}/>
         <Box mt={8}>
